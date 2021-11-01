@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const colors = require('colors')
 require("dotenv").config()
 
+//Routes
+const userRoutes = require('./routes/User')
 
 const app = express()
 app.use(express.json());
@@ -17,10 +19,13 @@ const connDB = async () =>{
     } catch (error) {
         console.log(`Couldnt connect mongodb as error occured: ${error}`)
     }
-    } 
+} 
  
  connDB();
 
-
-const PORT = process.env.PORT
+app.get('/', (req, res)=>{
+    res.send("welcome to job portal")
+})
+app.use('/api/user', userRoutes)
+const PORT = process.env.PORT || 50000
 app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`.yellow.bold))
