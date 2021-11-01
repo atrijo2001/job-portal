@@ -24,7 +24,12 @@ exports.createUser = asyncHandler(async(req, res, next)=>{
     user.phoneOtp = otp;
     res.status(200).json({
         success: true,
-        data: user
+        data: {
+            name: user.name,
+            phone: user.phone,
+            role: user.role,
+            aadharNumber: user.aadharNumber
+        }
     })
     await user.save();
     try {
@@ -119,4 +124,16 @@ exports.getUserDetails = asyncHandler(async(req, res)=>{
         res.status(404)
         throw new Error('User not found')
     }
+})
+
+
+//Get all the details of the employees for the employers
+exports.getEmployeeDetails = asyncHandler(async(req, res)=>{
+    const users = await User.find({role: 'employee'}).select('-phoneOtp');
+    if(!users){
+        res.status(404);
+        throw new Error('No employees found');
+    }
+
+    res.status(200).json(users)
 })

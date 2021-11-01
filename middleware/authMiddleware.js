@@ -22,3 +22,13 @@ exports.protect = asyncHandler(async(req, res, next)=>{
         throw new Error('Not authorized, no token')
     }
 })
+
+exports.authorize = (...roles) => {
+    return (req, res, next) => {
+        if(!roles.includes(req.user.role)){
+            res.status(403);
+            throw new Error('You are not authorized to access this route')
+        }
+        next();
+    }
+}

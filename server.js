@@ -5,6 +5,7 @@ require("dotenv").config()
 
 //Routes
 const userRoutes = require('./routes/User')
+const bookingRouter = require('./routes/Book')
 
 const app = express()
 app.use(express.json());
@@ -27,5 +28,7 @@ app.get('/', (req, res)=>{
     res.send("welcome to job portal")
 })
 app.use('/api/user', userRoutes)
-const PORT = process.env.PORT || 50000
+app.use('/api/booking', bookingRouter)
+
+const PORT = process.env.PORT || 5000
 app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`.yellow.bold))

@@ -18,13 +18,13 @@ const userSchema =  mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['employer', 'employee'],
+        enum: ['employer', 'employee', 'admin'],
         default: 'employee'        
     },
     employeeDetails: {
         workType: {
             type: String,
-            enum: ['Plumber', 'Electrician', 'Mason', 'Carpenter', 'House Help', 'Cook', 'Nurse']
+            enum: ['Plumber', 'Electrician', 'Mason', 'Carpenter', 'House Help', 'Cook', 'Nurse', 'daily worker']
         },
         location: {
             type: String
