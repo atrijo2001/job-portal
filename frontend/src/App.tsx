@@ -1,11 +1,14 @@
-import React from 'react'
+//Component imports
+import Navbar from "./components/Navbar"
 
+//dependency imports
+import {BrowserRouter as Router} from "react-router-dom";
 const App = () => {
   return (
-    <div className="p-6 max-w-sm mx-auto bg-white rounded-xl shadow-md flex items-center space-x-4">
-      hello world
-      <div className="text-xl font-medium text-black">ChitChat</div>
-      <p className="text-gray-500">You have a new message!</p>
+    <div className='text-center'>
+      <Router>
+        <Navbar/>
+      </Router>
     </div>
   )
 }
