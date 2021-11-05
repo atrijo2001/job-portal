@@ -52,13 +52,14 @@ const AuthState = (props) => {
 
         try {
         const {data} = await axios.post('/api/user/login', formData, config);
+        console.log(formData)
             dispatch({
                 type: SEND_OTP_SUCCESS,
-                payload: data
+                payload: formData
             })
         } catch (error) {
             dispatch({
-                type: REGISTER_FAIL,
+                type: SEND_OTP_FAIL,
                 payload: error.response.payload.msg
             })
         }
@@ -79,15 +80,25 @@ const AuthState = (props) => {
             })
         } catch (error) {
             dispatch({
-                type: REGISTER_FAIL,
+                type: VERIFY_USER_FAIL,
                 payload: error.response.payload.msg
             })
         }
     }
     return (
-        <div>
-            
-        </div>
+        <AuthContext.Provider
+        value={{
+            token: state.token,
+            isAuthenticated: state.isAuthenticated,
+            loading: state.loading,
+            user: state.user,
+            error: state.user,
+            RegisterUser,
+            verifyUser,
+            sendOtp
+        }}>
+            {props.children}
+        </AuthContext.Provider>
     )
 }
 
