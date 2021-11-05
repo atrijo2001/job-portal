@@ -1,10 +1,14 @@
-import Navbar from "./navbar"
+import Navbar from "./components/Navbar"
+
+//import the states
+import AuthState from "./context/auth/AuthState"
 
 const App = () => {
   return (
     <div>
-      <Navbar/>
-      
+      <AuthState>
+          <Navbar/>
+      </AuthState>
     </div>
   )
 }
