@@ -1,10 +1,13 @@
-import Navbar from "./navbar"
+import Footer from "./Footer"
+import Homepage from "./Homepage"
+import Navbar from "./Navbar"
 
 const App = () => {
   return (
     <div>
-      <Navbar/>
-      
+      <Navbar/>      
+      <Homepage/>
+      <Footer/>
     </div>
   )
 }

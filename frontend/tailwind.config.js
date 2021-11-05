@@ -1,4 +1,3 @@
-const colors = require('tailwindcss/colors')
 const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
 	purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
@@ -12,6 +11,9 @@ module.exports = {
 			},
 			fontFamily: {
 				sans: ['Be Vietnam', ...defaultTheme.fontFamily.sans],
+			},
+			backgroundImage:{
+				'hero':"url('https://imgur.com/AdTRmEs.png')"
 			},
 		},
 	},
