@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Transition } from '@headlessui/react'
+import { NavLink, Router, Link } from 'react-router-dom';
 
 function Navbar() {
 	const [isOpen, setIsOpen] = useState(false)
@@ -7,7 +8,7 @@ function Navbar() {
 		backgroundImage: 'url(https://imgur.com/AdTRmEs.png)',
 	};
 	return (
-		<div>
+		<>
 			<nav className='bg-blueviolet'>
 				<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='flex items-center justify-between h-16'>
@@ -21,25 +22,25 @@ function Navbar() {
 							</div>
 							<div className='absolute hidden md:block right-10'>
 								<div className='ml-10 flex items-baseline space-x-4'>
-									<a className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
+									<NavLink to='/' className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
 										Home
-									</a>
+									</NavLink>
 
-									<a className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
+									<NavLink to='/about' className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
 										About
-									</a>
+									</NavLink>
 
-									<a className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
+									<NavLink to='/contact' className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
 										Contact Us
-									</a>
+									</NavLink>
 
-									<a className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
+									<NavLink to='/login' className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
 										Login
-									</a>
+									</NavLink>
 
-									<a className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
+									<NavLink to='/register' className='text-darkblue px-3 py-2 rounded-md text-sm font-medium font-sans'>
 										Register
-									</a>
+									</NavLink>
 									<button
 										type='button'
 										className='bg-darkblue p-1 rounded-full text-blueviolet hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-darkblue focus:ring-white'>
@@ -146,7 +147,7 @@ function Navbar() {
 					)}
 				</Transition>
 			</nav>
-		</div>
+		</>
 	)
 }
 
