@@ -1,7 +1,9 @@
 import { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth/authContext";
 
 const Otp = () => {
+  const navigate = useNavigate();
   const authcontext = useContext(AuthContext);
   const { user, otpSent, sendOtp, verifyUser } = authcontext;
 
@@ -16,6 +18,7 @@ const Otp = () => {
   const loginUser = (e) => {
     e.preventDefault();
     verifyUser({ phone: phno, otp });
+    navigate("/employees");
   };
 
   useEffect(() => {

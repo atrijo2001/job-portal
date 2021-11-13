@@ -6,7 +6,7 @@ import {
   VERIFY_USER_FAIL,
   VERIFY_USER_SUCCESS,
   FETCH_EMPLOYEES_SUCCESS,
-  FETCH_EMPLOYEES_FAIL
+  FETCH_EMPLOYEES_FAIL,
 } from "../types";
 
 const authReducer = (state, action) => {
@@ -61,18 +61,18 @@ const authReducer = (state, action) => {
       };
     }
     case FETCH_EMPLOYEES_SUCCESS: {
-      return{
+      return {
         ...state,
         isAuthenticated: true,
         loading: false,
-        employees: action.payload
-      }
+        employees: action.payload,
+      };
     }
     case FETCH_EMPLOYEES_FAIL: {
       return {
         ...state,
-        loading: false
-      }
+        loading: false,
+      };
     }
     default:
       return state;
