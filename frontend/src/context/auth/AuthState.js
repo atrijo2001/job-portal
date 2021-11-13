@@ -4,7 +4,6 @@ import AuthContext from './authContext'
 import authReducer from './authReducer'
 import {REGISTER_SUCCESS,
 REGISTER_FAIL,
-LOAD_USER,
 SEND_OTP_FAIL,
 SEND_OTP_SUCCESS,
 VERIFY_USER_FAIL,
@@ -96,7 +95,9 @@ const AuthState = (props) => {
             RegisterUser,
             verifyUser,
             sendOtp
-        }}>
+        
+        }}
+        >
             {props.children}
         </AuthContext.Provider>
     )

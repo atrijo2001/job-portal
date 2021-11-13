@@ -1,10 +1,10 @@
-import {useState, useContext, useEffect} from 'react'
+import {useState, useContext} from 'react'
 import AuthContext from '../context/auth/authContext'
 
 const Register = () => {
 
     const authcontext = useContext(AuthContext)
-    const {RegisterUser, loading, user, error} = authcontext
+    const {RegisterUser, user, error} = authcontext
     const [users, setUsers] = useState({
         name: '',
         skill: '',
@@ -15,73 +15,73 @@ const Register = () => {
         location: '',
         address: ''
     })
-    const {name, skill, phone, aadhar, experience, rate, location, address} = users
     const onChange = e => setUsers({ ...users, [e.target.name]: e.target.value });
     const onSubmit = e => ()=> {
         e.preventDefault();
-        if(name==='' || skill==='' || phone==='' || aadhar==='' || experience==='' || rate==='' || location==='' || address===''){
+        if(users.name==='' || users.skill==='' || users.phone==='' || users.aadhar==='' || users.experience==='' || users.rate==='' || users.location==='' || users.address===''){
             alert('Please enter all the fields')
         } else{
             RegisterUser({
-                name,
-                phone,
-                aadharNumber: aadhar,
+                name: users.name,
+                phone: users.phone,
+                aadharNumber: users.aadhar,
                 role: 'employee',
                 employeeDetails: {
-                    workType: skill,
-                    location,
-                    hourlyRate: rate,
-                    address,
-                    experience,
-                    location
+                    workType: users.skill,
+                    location: users.location,
+                    hourlyRate: users.rate,
+                    address: users.address,
+                    experience: users.experience
                 }
             })
+            console.log(user)
+            console.log(error)
         }
     }
     return (
         <div className="bg-gray-200 my-6 mx-16 border-4 border-gray-900 rounded-lg  text-blue-900 md:mb-12">
             <div className="text-center font-bold text-4xl">Employee Registration</div>
-            <form action="" className='py-4'>
+            <form className='py-4' onSubmit={onSubmit}>
                 <div className="grid grid-flow-row md:grid-cols-2 md:grid-rows-2 gap-4">
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-bold ml-4 text-xl'>Name</label>
-                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your name" value={name} onChange={onChange} required/>
+                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your name" name='name' value={users.name} onChange={onChange} required/>
                         </div>
                         <div className='flex flex-col'>
                                 <label htmlFor="" className='font-bold ml-4 text-xl'>Job/Skill</label>
-                                <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your job" value={skill} onChange={onChange} required/>
+                                <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your job" name='skill' value={users.skill} onChange={onChange} required/>
                         </div>
 
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-bold ml-4 text-xl'>Phone</label>
-                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your phone number" value={phone} onChange={onChange} required/>
+                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your phone number" name='phone' value={users.phone} onChange={onChange} required/>
                         </div>
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-bold ml-4 text-xl'>Aadhar Number</label>
-                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your aadhar number" value={aadhar} onChange={onChange} required/>
+                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your aadhar number" name='aadhar' value={users.aadhar} onChange={onChange} required/>
                         </div>
 
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-bold ml-4 text-xl'>Experience</label>
-                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your experience" value={experience} onChange={onChange} required/>
+                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your experience" name='experience' value={users.experience} onChange={onChange} required/>
                         </div>
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-bold ml-4 text-xl'>Hourly Rate</label>
-                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your hourly rate" value={rate} onChange={onChange} required/>
+                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your hourly rate" name='rate' value={users.rate} onChange={onChange} required/>
                         </div>
 
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-bold ml-4 text-xl'>Location</label>
-                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your location" value={location} onChange={onChange} required/>
+                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your location" name='location' value={users.location} onChange={onChange} required/>
                         </div>
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-bold ml-4 text-xl'>Address</label>
-                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your full address" value={address} onChange={onChange} required/>
+                            <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your full address" name='address' value={users.address} onChange={onChange} required/>
                         </div>
                 </div>
-                <div class="flex">
-                     <div class="m-auto">
-                     <button className='my-3 py-3 md:w-72 bg-indigo-900 text-white border-2 rounded-lg' type='submit'>Submit</button>
+                <div className="flex">
+                     <div className="m-auto">
+                     <input type='submit' className='my-3 py-3 md:w-72 bg-indigo-900 text-white border-2 rounded-lg' />
                     </div>
                 </div>
                 

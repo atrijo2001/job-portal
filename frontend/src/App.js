@@ -16,20 +16,20 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 const App = () => {
   return (
     <div>    
-      <AuthState>
         <BrowserRouter>
+        <AuthState>
           <Navbar/>
-          <Routes>
-              <Route path='/' element={<Homepage/>}/>
-              <Route path='/register' element={<Register/>}/>
-              <Route path='/login' element={<OTP/>}/>
-              <Route path='/about' element={<About/>}/>
-              <Route path='/contact' element={<Contact/>}/>
-              <Route path='/employees' element={<Employees/>}/>
-          </Routes>
+            <Routes>
+                <Route path='/' element={<Homepage/>}/>
+                <Route path='/register' element={<Register/>}/>
+                <Route path='/login' element={<OTP/>}/>
+                <Route path='/about' element={<About/>}/>
+                <Route path='/contact' element={<Contact/>}/>
+                <Route path='/employees' element={<Employees/>}/>
+            </Routes>
+        </AuthState>
         </BrowserRouter>
         <Footer/>
-      </AuthState>
     </div>
   )
 }

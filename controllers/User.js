@@ -32,17 +32,17 @@ exports.createUser = asyncHandler(async(req, res, next)=>{
         }
     })
     await user.save();
-    try {
-        await fast2sms(
-            {
-              message: `Your OTP is ${otp}`,
-              contactNumber: user.phone,
-            },
-            next()
-          );
-    } catch (error) {
-        throw new Error(error)
-    }
+    // try {
+    //     await fast2sms(
+    //         {
+    //           message: `Your OTP is ${otp}`,
+    //           contactNumber: user.phone,
+    //         },
+    //         next()
+    //       );
+    // } catch (error) {
+    //     throw new Error(error)
+    // }
 })
 
 
