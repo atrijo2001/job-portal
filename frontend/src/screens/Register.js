@@ -3,7 +3,7 @@ const Register = () => {
         <div className="bg-gray-200 my-6 mx-16 border-4 border-gray-900 rounded-lg  text-blue-900">
             <div className="text-center font-bold text-4xl">Employee Registration</div>
             <form action="" className='py-4'>
-                <div className="grid grid-flow-row grid-cols-2 grid-rows-2 gap-4">
+                <div className="grid grid-flow-row md:grid-cols-2 md:grid-rows-2 gap-4">
                         <div className='flex flex-col'>
                             <label htmlFor="" className='font-bold ml-4 text-xl'>Name</label>
                             <input type="text" className='p-3 m-3 border-2 border-gray-900 rounded-lg' placeholder="Enter your name"/>
@@ -42,7 +42,7 @@ const Register = () => {
                 </div>
                 <div class="flex">
                      <div class="m-auto">
-                     <button className='my-3 py-3 w-72 bg-indigo-900 text-white border-2 rounded-lg' type='submit'>Submit</button>
+                     <button className='my-3 py-3 md:w-72 bg-indigo-900 text-white border-2 rounded-lg' type='submit'>Submit</button>
                     </div>
                 </div>
                 
