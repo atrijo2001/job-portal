@@ -5,6 +5,8 @@ import {
   SEND_OTP_SUCCESS,
   VERIFY_USER_FAIL,
   VERIFY_USER_SUCCESS,
+  FETCH_EMPLOYEES_SUCCESS,
+  FETCH_EMPLOYEES_FAIL
 } from "../types";
 
 const authReducer = (state, action) => {
@@ -57,6 +59,20 @@ const authReducer = (state, action) => {
         isAuthenticated: false,
         loading: false,
       };
+    }
+    case FETCH_EMPLOYEES_SUCCESS: {
+      return{
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        employees: action.payload
+      }
+    }
+    case FETCH_EMPLOYEES_FAIL: {
+      return {
+        ...state,
+        loading: false
+      }
     }
     default:
       return state;

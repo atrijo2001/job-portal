@@ -6,6 +6,7 @@ import OTP from './screens/Otp'
 import About from './screens/About'
 import Contact from './screens/Contact'
 import Employees from "./screens/Employees"
+import EmployerRegister from "./screens/EmployeeRegister"
 
 //import the states
 import AuthState from "./context/auth/AuthState"
@@ -26,6 +27,7 @@ const App = () => {
                 <Route path='/about' element={<About/>}/>
                 <Route path='/contact' element={<Contact/>}/>
                 <Route path='/employees' element={<Employees/>}/>
+                <Route path='/employer/register' element={<EmployerRegister/>}/>
             </Routes>
         </AuthState>
         </BrowserRouter>

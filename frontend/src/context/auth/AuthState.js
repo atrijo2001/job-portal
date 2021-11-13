@@ -9,6 +9,8 @@ import {
   SEND_OTP_SUCCESS,
   VERIFY_USER_FAIL,
   VERIFY_USER_SUCCESS,
+  FETCH_EMPLOYEES_SUCCESS, 
+  FETCH_EMPLOYEES_FAIL
 } from "../types";
 
 const AuthState = (props) => {
@@ -19,6 +21,7 @@ const AuthState = (props) => {
     user: null,
     error: null,
     otpSent: false,
+    employees: []
   };
   const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -88,6 +91,27 @@ const AuthState = (props) => {
       });
     }
   };
+
+  //Get all the employees available for an employer
+  const getEmployees = async()=> {
+    try {
+      const {data} = await axios.get('/api/user/all', {
+        headers:{
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+      dispatch({
+        type: FETCH_EMPLOYEES_SUCCESS,
+        payload: data
+      })
+    } catch (error) {
+      dispatch({
+        type: FETCH_EMPLOYEES_FAIL,
+        payload: error
+      })
+    }
+    
+  }
   return (
     <AuthContext.Provider
       value={{
@@ -100,6 +124,7 @@ const AuthState = (props) => {
         RegisterUser,
         verifyUser,
         sendOtp,
+        getEmployees
       }}
     >
       {props.children}
