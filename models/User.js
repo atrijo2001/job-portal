@@ -44,6 +44,9 @@ const userSchema =  mongoose.Schema({
         experience: {
             type: String
         },
+        location: {
+            type: String
+        },
         photo: {
             type: String
         }
