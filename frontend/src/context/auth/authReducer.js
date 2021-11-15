@@ -5,6 +5,7 @@ import {
   SEND_OTP_SUCCESS,
   VERIFY_USER_FAIL,
   VERIFY_USER_SUCCESS,
+  LOGOUT,
 } from "../types";
 
 const authReducer = (state, action) => {
@@ -16,6 +17,7 @@ const authReducer = (state, action) => {
         isAuthenticated: false,
         loading: false,
         user: action.payload,
+        error: null,
       };
 
     case REGISTER_FAIL:
@@ -48,6 +50,7 @@ const authReducer = (state, action) => {
         ...action.payload,
         isAuthenticated: true,
         loading: false,
+        error: null,
       };
     }
     case VERIFY_USER_FAIL: {
@@ -57,6 +60,15 @@ const authReducer = (state, action) => {
         isAuthenticated: false,
         loading: false,
         error: action.payload,
+      };
+    }
+    case LOGOUT: {
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        error: null,
       };
     }
     default:

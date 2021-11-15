@@ -7,7 +7,6 @@ import OTP from "./screens/Otp";
 import About from "./screens/About";
 import Contact from "./screens/Contact";
 import Employees from "./screens/Employees";
-import Error from "./components/Error";
 import EmployerRegister from "./screens/EmployeeRegister";
 import AuthContext from "./context/auth/authContext";
 //Dependency imports
@@ -17,7 +16,7 @@ const AuthRoutes = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate("login");
+    navigate("/login");
   }, []);
 
   return (
@@ -36,12 +35,10 @@ const App = () => {
 
   const { token } = authcontext;
 
-  console.log({ "token is": token });
   return (
-    <div>
+    <div className="min-h-screen">
       <BrowserRouter>
         <Navbar />
-        <Error />
 
         {token === undefined || token === null ? (
           <AuthRoutes />

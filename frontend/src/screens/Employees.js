@@ -1,13 +1,17 @@
 import { useState, useEffect, useContext } from "react";
 import EmployeesContext from "../context/employees/employeesContext";
+import AuthContext from "../context/auth/authContext";
+import { useNavigate } from "react-router-dom";
 
 const Employees = () => {
   const employeesContext = useContext(EmployeesContext);
+  const authContext = useContext(AuthContext);
 
+  const navigate = useNavigate();
   const [skillSearch, setSkillSearch] = useState("");
   const [locationSearch, setLocationSearch] = useState("");
   const { employees, getEmployees } = employeesContext;
-
+  const { token } = authContext;
   const onSkillChange = (e) => {
     setSkillSearch(e.target.value);
   };
@@ -18,11 +22,13 @@ const Employees = () => {
 
   let filteredEmployees = employees.filter(
     (item) =>
-      item.name.startsWith(skillSearch) &&
+      (item.name.startsWith(skillSearch) ||
+        item.employeeDetails.workType.startsWith(skillSearch)) &&
       item.employeeDetails.location.startsWith(locationSearch)
   );
 
   useEffect(() => {
+    if (token === null) navigate("/login");
     getEmployees();
   }, []);
   return (

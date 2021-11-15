@@ -9,6 +9,7 @@ import {
   SEND_OTP_SUCCESS,
   VERIFY_USER_FAIL,
   VERIFY_USER_SUCCESS,
+  LOGOUT,
 } from "../types";
 
 const AuthState = (props) => {
@@ -88,6 +89,12 @@ const AuthState = (props) => {
     }
   };
 
+  const logout = () => {
+    dispatch({
+      type: LOGOUT,
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -100,6 +107,7 @@ const AuthState = (props) => {
         RegisterUser,
         verifyUser,
         sendOtp,
+        logout,
       }}
     >
       {props.children}
