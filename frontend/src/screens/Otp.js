@@ -1,11 +1,15 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth/authContext";
+import AlertContext from "../context/alert/alertContext";
 
 const Otp = () => {
   const navigate = useNavigate();
   const authcontext = useContext(AuthContext);
-  const { user, otpSent, sendOtp, verifyUser } = authcontext;
+  const alertContext = useContext(AlertContext);
+
+  const { user, otpSent, sendOtp, verifyUser, token, error } = authcontext;
+  const { setAlert } = alertContext;
 
   const [phno, setPhno] = useState("");
   const [otp, setOtp] = useState("");
@@ -18,13 +22,22 @@ const Otp = () => {
   const loginUser = (e) => {
     e.preventDefault();
     verifyUser({ phone: phno, otp });
-    navigate("/employees");
+    if (token) navigate("/employees");
   };
 
   useEffect(() => {
     if (user?.data?.phone) setPhno(user.data.phone);
   }, [user]);
 
+  useEffect(() => {
+    if (token) navigate("/employees");
+  }, [token]);
+
+  useEffect(() => {
+    if (error) {
+      setAlert(error);
+    }
+  }, [error]);
   return (
     <div className="bg-gray-200 my-24 mx-16 border-4 border-gray-900 rounded-lg  text-blue-900">
       <h1 className="text-center font-bold my-5">Please Login to Continue</h1>

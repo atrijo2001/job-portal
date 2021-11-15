@@ -5,14 +5,11 @@ import {
   SEND_OTP_SUCCESS,
   VERIFY_USER_FAIL,
   VERIFY_USER_SUCCESS,
-  FETCH_EMPLOYEES_SUCCESS,
-  FETCH_EMPLOYEES_FAIL,
 } from "../types";
 
 const authReducer = (state, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      console.log("hi reducer");
       console.log({ payload: action.payload });
       return {
         ...state,
@@ -54,24 +51,12 @@ const authReducer = (state, action) => {
       };
     }
     case VERIFY_USER_FAIL: {
+      console.log({ action: action.payload });
       return {
         ...state,
         isAuthenticated: false,
         loading: false,
-      };
-    }
-    case FETCH_EMPLOYEES_SUCCESS: {
-      return {
-        ...state,
-        isAuthenticated: true,
-        loading: false,
-        employees: action.payload,
-      };
-    }
-    case FETCH_EMPLOYEES_FAIL: {
-      return {
-        ...state,
-        loading: false,
+        error: action.payload,
       };
     }
     default:

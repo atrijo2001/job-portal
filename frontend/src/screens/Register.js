@@ -1,11 +1,11 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/auth/authContext";
 
 const Register = () => {
   const navigate = useNavigate();
   const authcontext = useContext(AuthContext);
-  const { RegisterUser, user, error } = authcontext;
+  const { RegisterUser, user, error, token } = authcontext;
   const [users, setUsers] = useState({
     name: "",
     skill: "",
@@ -51,6 +51,10 @@ const Register = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (token) navigate("/employees");
+  }, []);
   return (
     <div className="bg-gray-200 my-6 mx-16 border-4 border-gray-900 rounded-lg  text-blue-900 md:mb-12">
       <div className="text-center font-bold text-4xl">

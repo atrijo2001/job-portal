@@ -9,8 +9,6 @@ import {
   SEND_OTP_SUCCESS,
   VERIFY_USER_FAIL,
   VERIFY_USER_SUCCESS,
-  FETCH_EMPLOYEES_SUCCESS,
-  FETCH_EMPLOYEES_FAIL,
 } from "../types";
 
 const AuthState = (props) => {
@@ -61,11 +59,10 @@ const AuthState = (props) => {
         payload: formData,
       });
     } catch (error) {
-      //   dispatch({
-      //     type: SEND_OTP_FAIL,
-      //     payload: error.response.payload.msg,
-      //   });
-      console.log(error);
+      dispatch({
+        type: SEND_OTP_FAIL,
+        payload: error.response.data.message,
+      });
     }
   };
 
@@ -82,34 +79,15 @@ const AuthState = (props) => {
         type: VERIFY_USER_SUCCESS,
         payload: data,
       });
-      console.log({ jwt: data });
     } catch (error) {
+      console.log(error.response.data.message);
       dispatch({
         type: VERIFY_USER_FAIL,
-        payload: error.response.payload.msg,
+        payload: error.response.data.message,
       });
     }
   };
 
-  //Get all the employees available for an employer
-  const getEmployees = async () => {
-    try {
-      const { data } = await axios.get("/api/user/all", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      dispatch({
-        type: FETCH_EMPLOYEES_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: FETCH_EMPLOYEES_FAIL,
-        payload: error,
-      });
-    }
-  };
   return (
     <AuthContext.Provider
       value={{
@@ -117,7 +95,7 @@ const AuthState = (props) => {
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
         user: state.user,
-        error: state.user,
+        error: state.error,
         otpSent: state.otpSent,
         RegisterUser,
         verifyUser,
